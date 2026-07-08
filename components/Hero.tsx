@@ -246,7 +246,6 @@ export default function Hero() {
                   className="mt-10 flex items-center gap-8"
                 >
                   {[
-                    { label: "YRS_EXP",   value: identity.yearsExp },
                     { label: "PROJECTS",  value: identity.projectsShipped },
                     { label: "COFFEE",    value: identity.coffeeCount },
                   ].map((s, i) => (
