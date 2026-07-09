@@ -15,7 +15,6 @@ export default function Footer() {
           {[
             { label: "GH",  href: contact.github },
             { label: "LI",  href: contact.linkedin },
-            { label: "TW",  href: contact.twitter },
           ].map((s) => (
             <motion.a
               key={s.label}
