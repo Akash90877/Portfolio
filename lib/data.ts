@@ -2,11 +2,9 @@
 export const identity = {
   name: "AKASH",
   roles: [
-    "Software Engineer",
     "Full Stack Developer",
+    "Spring Boot Developer",
     "Open Source Contributor",
-    "Problem Solver",
-    "System Architect",
   ],
   location: "Kuppam, Andhra Pradesh, India",
   status: "AVAILABLE FOR OPPORTUNITIES",
@@ -25,10 +23,8 @@ export const about = {
   focusAreas: [
     "Distributed Systems",
     "Developer Tooling",
-    "Performance Engineering",
     "API Design",
     "Cloud Infrastructure",
-    "Open Source",
   ],
   stats: [
     { label: "Projects Shipped", value: "8+" },
@@ -50,33 +46,33 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "proj-01",
-    title: "PROJECT_ALPHA",
-    tagline: "A high-performance distributed task queue built for scale.",
+    title: "Sellex",
+    tagline: "A E-Commerce platform for small businesses to sell online.",
     description:
-      "Engineered a fault-tolerant task processing system capable of handling millions of jobs per day. Implemented priority queues, dead-letter handling, and real-time monitoring dashboards.",
-    stack: ["Go", "Redis", "PostgreSQL", "Docker", "Kubernetes"],
-    status: "SHIPPED",
+      "Developed a full-stack e-commerce platform with real-time inventory management,order processing and analytics dashboard. Implemented microservices architecture for scalability.",
+    stack: ["React", "Spring Boot", "Java", "JWT Authentication", "MySQL & Firebase"],
+    status: "IN_PROGRESS",
     links: [
       { label: "live", href: "#" },
-      { label: "source", href: "#" },
+      { label: "source", href: "https://github.com/Akash90877/Sellex--E-Commerce_Platform" },
     ],
   },
   {
     id: "proj-02",
-    title: "PROJECT_BETA",
-    tagline: "Real-time collaborative code editor with AI assistance.",
+    title: "GeoFlow",
+    tagline: "A Ground Water AI assistant for real-time monitoring and prediction of groundwater levels.",
     description:
-      "Built a browser-based IDE with operational transformation for conflict-free concurrent editing. Integrated LLM-powered code completion and inline documentation generation.",
-    stack: ["TypeScript", "React", "WebSockets", "Node.js", "OpenAI"],
+      "Developed a real-time groundwater monitoring system using AI models. Implemented predictive analytics for water level forecasting and alerting.",
+    stack: ["Python", "React", "FastAPI", "Google Cloud AI"],
     status: "SHIPPED",
     links: [
-      { label: "live", href: "#" },
-      { label: "source", href: "#" },
+      { label: "live", href: "https://geoflowai.netlify.app/" },
+      { label: "source", href: "https://github.com/Akash90877/GeoFlow" },
     ],
   },
   {
     id: "proj-03",
-    title: "PROJECT_GAMMA",
+    title: "",
     tagline: "CLI toolkit for automating cloud infrastructure deployments.",
     description:
       "Developed a developer-first CLI that abstracts away Terraform and Helm complexity. Supports multi-cloud deployments with a single config file and interactive prompts.",
@@ -110,11 +106,9 @@ export const stack: SkillGroup[] = [
   {
     category: "Languages",
     skills: [
-      { name: "TypeScript", level: 92 },
-      { name: "Go", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "Rust", level: 65 },
-      { name: "Java", level: 75 },
+      { name: "Java", level: 92 },
+      { name: "C", level: 85 },
+      { name: "Python", level: 70 },
     ],
   },
   {
@@ -122,16 +116,14 @@ export const stack: SkillGroup[] = [
     skills: [
       { name: "React / Next.js", level: 90 },
       { name: "Tailwind CSS", level: 88 },
-      { name: "Framer Motion", level: 82 },
-      { name: "WebGL / Three.js", level: 60 },
+      { name: "Framer Motion", level: 65 },
     ],
   },
   {
     category: "Backend",
     skills: [
       { name: "Node.js / Express", level: 88 },
-      { name: "PostgreSQL", level: 85 },
-      { name: "Redis", level: 80 },
+      { name: "MySQL", level: 85 },
       { name: "Kafka", level: 72 },
     ],
   },
@@ -139,9 +131,8 @@ export const stack: SkillGroup[] = [
     category: "Infrastructure",
     skills: [
       { name: "Docker / Kubernetes", level: 82 },
-      { name: "AWS / GCP", level: 78 },
-      { name: "Terraform", level: 70 },
-      { name: "CI/CD Pipelines", level: 85 },
+      { name: "AWS", level: 78 },
+      { name: "CI/CD Pipelines", level: 70},
     ],
   },
 ];
@@ -150,43 +141,28 @@ export type TimelineEntry = {
   date: string;
   title: string;
   org: string;
-  type: "work" | "education";
+  type:  "work" | "education";
   description: string;
 };
 
 export const timeline: TimelineEntry[] = [
-  {
-    date: "2024 — Present",
-    title: "Senior Software Engineer",
-    org: "COMPANY_NAME",
+   {
+    date: "May 2026 - july 2026",
+    title: "Java Full Stack Intern",
+    org: "VaultShpere AI Technologies",
     type: "work",
     description:
-      "Leading backend architecture for a platform serving X million users. Reduced p99 latency by 40% through query optimization and caching strategies.",
+      "Developed end-to-end web applications, integrating front-end and back-end components. Implemented RESTful APIs and optimized database queries for performance.",
   },
   {
-    date: "2022 — 2024",
-    title: "Software Engineer",
-    org: "STARTUP_NAME",
-    type: "work",
-    description:
-      "Built core product features from 0 to 1. Owned the entire data pipeline from ingestion to visualization. Helped grow the engineering team from 3 to 15.",
-  },
-  {
-    date: "2021 — 2022",
-    title: "Software Engineer Intern",
-    org: "BIG_TECH_CO",
-    type: "work",
-    description:
-      "Shipped a developer tooling feature used by 10,000+ internal engineers. Received return offer.",
-  },
-  {
-    date: "2018 — 2022",
-    title: "B.S. Computer Science",
-    org: "UNIVERSITY_NAME",
+    date: "2023 — Present",
+    title: " Engineering Undergraduate",
+    org: "Kuppam Engineering College",
     type: "education",
     description:
-      "Graduated with honors. Focused on distributed systems and programming languages. Teaching assistant for Data Structures & Algorithms.",
+      "Aspired to become a software engineer, focusing on full-stack development, cloud computing, and open-source contributions. Engaged in various projects and hackathons to enhance practical skills.",
   },
+ 
 ];
 
 export type Award = {
@@ -229,9 +205,8 @@ export const awards: Award[] = [
 ];
 
 export const contact = {
-  email: "hello@yourname.dev",
-  github: "https://github.com/your-username",
-  linkedin: "https://linkedin.com/in/your-username",
-  twitter: "https://twitter.com/your-handle",
-  resumeUrl: "#",
+  email: "akashp2605@gmail.com",
+  github: "https://github.com/Akash90877",
+  linkedin: "https://www.linkedin.com/in/akash-p-77709a331?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  resumeUrl: "",
 };

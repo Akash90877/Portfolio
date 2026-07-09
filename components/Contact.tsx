@@ -7,7 +7,6 @@ import { contact } from "@/lib/data";
 const SOCIAL = [
   { label: "github",   href: contact.github,   color: "#f0f0f0" },
   { label: "linkedin", href: contact.linkedin,  color: "#00e5ff" },
-  { label: "twitter",  href: contact.twitter,   color: "#00e5ff" },
   { label: "resume",   href: contact.resumeUrl, color: "#00ff88" },
 ];
 
@@ -48,7 +47,7 @@ export default function Contact() {
         transition={{ delay: 0.2 }}
         className="text-muted text-sm mb-12 max-w-md"
       >
-        Open to opportunities, collaborations, and interesting problems. Let&apos;s build something great.
+        Open to opportunities, collaborations, and interesting problems. Let's build something great.
       </motion.p>
 
       <div className="grid lg:grid-cols-2 gap-12">
