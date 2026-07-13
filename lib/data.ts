@@ -1,6 +1,6 @@
 
 export const identity = {
-  name: "AKASH",
+  name: "Akash",
   roles: [
     "Full Stack Developer",
     "Spring Boot Developer",
@@ -45,7 +45,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "proj-01",
+    id: "Proj-01",
     title: "Sellex",
     tagline: "A E-Commerce platform for small businesses to sell online.",
     description:
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "proj-02",
+    id: "Proj-02",
     title: "GeoFlow",
     tagline: "A Ground Water AI assistant for real-time monitoring and prediction of groundwater levels.",
     description:
@@ -70,33 +70,7 @@ export const projects: Project[] = [
       { label: "source", href: "https://github.com/Akash90877/GeoFlow" },
     ],
   },
-  {
-    id: "proj-03",
-    title: "",
-    tagline: "CLI toolkit for automating cloud infrastructure deployments.",
-    description:
-      "Developed a developer-first CLI that abstracts away Terraform and Helm complexity. Supports multi-cloud deployments with a single config file and interactive prompts.",
-    stack: ["Python", "Terraform", "AWS", "GCP", "Click"],
-    status: "IN_PROGRESS",
-    links: [
-      { label: "source", href: "#" },
-    ],
-  },
-  {
-    id: "proj-04",
-    title: "PROJECT_DELTA",
-    tagline: "Open-source analytics platform with zero vendor lock-in.",
-    description:
-      "Self-hostable product analytics alternative. Tracks user events, funnels, and retention with a privacy-first approach. No cookies, no third-party scripts.",
-    stack: ["Next.js", "ClickHouse", "Kafka", "Grafana", "Rust"],
-    status: "SHIPPED",
-    links: [
-      { label: "live", href: "#" },
-      { label: "source", href: "#" },
-    ],
-  },
 ];
-
 export type SkillGroup = {
   category: string;
   skills: { name: string; level: number; icon?: string }[];

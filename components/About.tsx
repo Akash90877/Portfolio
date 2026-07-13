@@ -47,7 +47,7 @@ export default function About() {
 
           {/* Focus areas */}
           <motion.div variants={item} className="mt-8">
-            <div className="font-mono text-xs text-dim mb-4">FOCUS_AREAS[]</div>
+            <div className="font-mono text-xs text-dim mb-4">FOCUS AREAS[]</div>
             <div className="flex flex-wrap gap-2">
               {about.focusAreas.map((f) => (
                 <motion.span

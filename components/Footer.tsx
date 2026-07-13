@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { contact } from "@/lib/data";
+import { externalLinkProps } from "@/lib/links";
 
 export default function Footer() {
   return (
@@ -15,11 +16,11 @@ export default function Footer() {
           {[
             { label: "GH",  href: contact.github },
             { label: "LI",  href: contact.linkedin },
-            { label: "TW",  href: contact.twitter },
           ].map((s) => (
             <motion.a
               key={s.label}
               href={s.href}
+              {...externalLinkProps(s.href)}
               whileHover={{ color: "#00ff88", y: -2 }}
               className="font-mono text-xs text-dim transition-colors"
             >

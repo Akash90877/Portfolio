@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/lib/data";
+import { externalLinkProps } from "@/lib/links";
 
 const STATUS_STYLE: Record<string, { color: string; glow: string }> = {
   SHIPPED:     { color: "#00ff88", glow: "0 0 8px #00ff88" },
@@ -92,6 +93,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             <motion.a
               key={l.label}
               href={l.href}
+              {...externalLinkProps(l.href)}
               whileHover={{ x: 3 }}
               className="font-mono text-xs text-muted hover:text-green transition-colors flex items-center gap-1"
             >

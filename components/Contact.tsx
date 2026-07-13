@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { contact } from "@/lib/data";
+import { externalLinkProps } from "@/lib/links";
 
 const SOCIAL = [
   { label: "github",   href: contact.github,   color: "#f0f0f0" },
@@ -76,6 +77,7 @@ export default function Contact() {
               <motion.a
                 key={s.label}
                 href={s.href}
+                {...externalLinkProps(s.href)}
                 whileHover={{ x: 6, color: s.color }}
                 className="flex items-center gap-3 font-mono text-sm text-muted transition-colors"
               >
