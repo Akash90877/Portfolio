@@ -20,12 +20,11 @@ const CODE_LINES = [
 
 export default function Hero() {
   const [scanDone, setScanDone] = useState(false);
-  const [roleIndex, setRoleIndex]   = useState(0);
-  const [displayed, setDisplayed]   = useState("");
-  const [deleting, setDeleting]     = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Mouse parallax
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const panelX = useTransform(mouseX, [-1, 1], [-8, 8]);
@@ -33,7 +32,6 @@ export default function Hero() {
 
   useEffect(() => { setScanDone(true); }, []);
 
-  // ── Typewriter ─────────────────────────────────────────
   useEffect(() => {
     if (!scanDone) return;
     const current = identity.roles[roleIndex];
@@ -50,7 +48,6 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, [displayed, deleting, roleIndex, scanDone]);
 
-  // ── Mouse parallax ─────────────────────────────────────
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       mouseX.set((e.clientX / window.innerWidth  - 0.5) * 2);
@@ -63,22 +60,18 @@ export default function Hero() {
   const ease = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
 
   return (
-    <section
-      ref={sectionRef}
-      id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
-      {/* ── Depth gradient layers ── */}
+    <section ref={sectionRef} id="hero" className="relative">
+      {/* Depth gradient layers */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#050505] via-[#070a08] to-[#050508]" />
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none"
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(0,255,136,0.04) 0%, transparent 70%)", transform: "translate(-30%, -30%)" }} />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%)", transform: "translate(30%, 30%)" }} />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#050505] to-transparent" />
       </div>
 
-      {/* ── Scan line animation on load ── */}
+      {/* Scan line on load */}
       <AnimatePresence>
         {!scanDone && (
           <motion.div
@@ -91,36 +84,29 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-28 pb-16 grid lg:grid-cols-[1fr_auto] gap-12 xl:gap-20 items-center">
+      {/* ── Desktop + tablet: side-by-side grid, fills viewport ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-28 pb-16 min-h-screen
+                      flex flex-col justify-center
+                      lg:grid lg:grid-cols-[1fr_auto] lg:gap-12 xl:gap-20 lg:items-center lg:flex-none">
 
-        {/* ── LEFT: Text content ── */}
+        {/* LEFT: text content */}
         <div>
-          {/* Mobile profile image — shown above content on small screens */}
-          <div className="flex justify-center mb-10 lg:hidden">
-            <ProfileImage scanDone={scanDone} />
-          </div>
-          {/* Main content — revealed after scan */}
           <AnimatePresence>
             {scanDone && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              >
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+
                 {/* Status pill */}
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border mb-6"
                   style={{ borderColor: "rgba(0,255,136,0.3)", background: "rgba(0,255,136,0.05)" }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse"
-                    style={{ boxShadow: "0 0 6px #00ff88" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" style={{ boxShadow: "0 0 6px #00ff88" }} />
                   <span className="font-mono text-[11px] text-green tracking-widest">{identity.status}</span>
                 </motion.div>
 
-                {/* Name — glitch reveal */}
+                {/* Name */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -128,37 +114,26 @@ export default function Hero() {
                   className="font-sans font-bold leading-[0.92] tracking-tight"
                   style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}
                 >
-                  <span className="block text-muted font-mono text-base mb-2 font-normal">
-                    // IDENTITY
-                  </span>
+                  <span className="block text-muted font-mono text-base mb-2 font-normal">// IDENTITY</span>
                   <span className="text-text">I&apos;m </span>
-                  <span
-                    className="text-green"
-                    style={{ textShadow: "0 0 30px rgba(0,255,136,0.4), 0 0 60px rgba(0,255,136,0.15)" }}
-                  >
+                  <span className="text-green" style={{ textShadow: "0 0 30px rgba(0,255,136,0.4), 0 0 60px rgba(0,255,136,0.15)" }}>
                     {identity.name}
                   </span>
                 </motion.h1>
 
-                {/* Typewriter role */}
+                {/* Typewriter */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
                   className="mt-5 font-mono text-lg md:text-xl h-8 flex items-center gap-2"
                 >
                   <span className="text-dim">&gt;_</span>
-                  <span className="text-cyan" style={{ textShadow: "0 0 12px rgba(0,229,255,0.5)" }}>
-                    {displayed}
-                  </span>
-                  <span className="inline-block w-[2px] h-5 bg-cyan blink"
-                    style={{ boxShadow: "0 0 6px #00e5ff" }} />
+                  <span className="text-cyan" style={{ textShadow: "0 0 12px rgba(0,229,255,0.5)" }}>{displayed}</span>
+                  <span className="inline-block w-[2px] h-5 bg-cyan blink" style={{ boxShadow: "0 0 6px #00e5ff" }} />
                 </motion.div>
 
                 {/* Summary */}
                 <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
                   className="mt-6 max-w-lg text-muted leading-relaxed text-sm md:text-base"
                 >
@@ -167,32 +142,22 @@ export default function Hero() {
 
                 {/* CTAs */}
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.75, duration: 0.5 }}
                   className="mt-8 flex flex-wrap gap-4"
                 >
                   <motion.a
-                    href="#projects"
-                    data-cursor="button"
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
+                    href="#projects" data-cursor="button"
+                    whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                     className="relative px-6 py-3 font-mono text-sm font-bold text-bg bg-green rounded overflow-hidden group"
                     style={{ boxShadow: "0 0 20px rgba(0,255,136,0.25)" }}
                   >
                     <span className="relative z-10">VIEW_WORK()</span>
-                    <motion.span
-                      className="absolute inset-0 bg-cyan"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <motion.span className="absolute inset-0 bg-cyan" initial={{ x: "-100%" }} whileHover={{ x: 0 }} transition={{ duration: 0.3 }} />
                   </motion.a>
                   <motion.a
-                    href="#contact"
-                    data-cursor="button"
-                    whileHover={{ scale: 1.04, borderColor: "#00e5ff" }}
-                    whileTap={{ scale: 0.97 }}
+                    href="#contact" data-cursor="button"
+                    whileHover={{ scale: 1.04, borderColor: "#00e5ff" }} whileTap={{ scale: 0.97 }}
                     className="px-6 py-3 font-mono text-sm font-bold text-cyan border border-cyan/40 rounded transition-all"
                     style={{ background: "rgba(0,229,255,0.04)" }}
                   >
@@ -202,35 +167,32 @@ export default function Hero() {
 
                 {/* Stats */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9 }}
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
                   className="mt-10 flex items-center gap-8"
                 >
                   {[
-                    { label: "PROJECTS",  value: identity.projectsShipped },
-                    { label: "COFFEE",    value: identity.coffeeCount },
+                    { label: "PROJECTS", value: identity.projectsShipped },
+                    { label: "COFFEE",   value: identity.coffeeCount },
                   ].map((s, i) => (
                     <div key={s.label} className="relative">
                       {i > 0 && <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-px h-6 bg-line-bright" />}
-                      <div className="font-sans font-bold text-2xl text-green"
-                        style={{ textShadow: "0 0 12px rgba(0,255,136,0.4)" }}>
+                      <div className="font-sans font-bold text-2xl text-green" style={{ textShadow: "0 0 12px rgba(0,255,136,0.4)" }}>
                         {s.value}
                       </div>
                       <div className="font-mono text-[10px] text-dim mt-0.5 tracking-widest">{s.label}</div>
                     </div>
                   ))}
                 </motion.div>
+
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        {/* ── RIGHT: Profile image + code panel ── */}
+        {/* RIGHT: profile image + code panel — desktop only */}
         <div className="hidden lg:flex flex-col items-center gap-8">
           <ProfileImage scanDone={scanDone} />
 
-          {/* Code panel */}
           <motion.div
             style={{ x: panelX, y: panelY }}
             initial={{ opacity: 0, x: 50 }}
@@ -239,95 +201,98 @@ export default function Hero() {
             data-cursor="card"
             className="w-full"
           >
-          <motion.div
-            whileHover={{ scale: 1.015 }}
-            transition={{ type: "spring", stiffness: 180, damping: 20 }}
-            className="rounded-xl overflow-hidden"
-            style={{
-              background: "rgba(8,12,10,0.92)",
-              backdropFilter: "blur(16px)",
-              border: "1px solid rgba(0,255,136,0.12)",
-              boxShadow: "0 0 60px rgba(0,255,136,0.06), 0 0 120px rgba(0,229,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)",
-            }}
-          >
-            {/* Window chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b"
-              style={{ borderColor: "rgba(0,255,136,0.1)", background: "rgba(0,0,0,0.3)" }}>
-              <span className="w-2.5 h-2.5 rounded-full bg-red/50" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber/50" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green/50" />
-              <span className="ml-3 font-mono text-[11px] text-dim">~/developer.ts</span>
-              <span className="ml-auto font-mono text-[10px] text-green-dim">● LIVE</span>
-            </div>
-
-            {/* Code lines */}
-            <div className="p-6 font-mono text-sm leading-relaxed">
-              {CODE_LINES.map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: scanDone ? 1 : 0, x: scanDone ? 0 : -8 }}
-                  transition={{ delay: 0.4 + i * 0.07, duration: 0.3 }}
-                  className="flex gap-4 min-h-[1.5rem]"
-                >
-                  <span className="select-none text-dim w-5 text-right shrink-0 text-xs pt-0.5">
-                    {line.code ? i + 1 : ""}
-                  </span>
-                  <span style={{ color: line.color || "transparent" }}>
-                    {line.code
-                      .replace(/(import|from|const|export|default)/g, (m) =>
-                        `\u200B${m}\u200B`)
-                      .split("\u200B")
-                      .map((part, pi) => {
-                        if (["import","from","const","export","default"].includes(part))
-                          return <span key={pi} style={{ color: "#8b5cf6" }}>{part}</span>;
-                        return <span key={pi}>{part}</span>;
-                      })}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Bottom status bar */}
-            <div className="px-4 py-2 border-t flex items-center justify-between"
-              style={{ borderColor: "rgba(0,255,136,0.08)", background: "rgba(0,0,0,0.2)" }}>
-              <span className="font-mono text-[10px] text-dim">TypeScript · UTF-8</span>
-              <span className="font-mono text-[10px] text-green-dim flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" />
-                No errors
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Floating data packets */}
-          {[0, 1, 2].map((i) => (
             <motion.div
-              key={i}
-              className="absolute font-mono text-[9px] text-green-dim pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={scanDone ? {
-                opacity: [0, 0.5, 0],
-                y: [0, -30 - i * 15],
-                x: [0, (i - 1) * 20],
-              } : {}}
-              transition={{ delay: 1.5 + i * 0.4, duration: 2, repeat: Infinity, repeatDelay: 3 + i }}
-              style={{ right: -20 + i * 10, top: 60 + i * 40 }}
+              whileHover={{ scale: 1.015 }}
+              transition={{ type: "spring", stiffness: 180, damping: 20 }}
+              className="rounded-xl overflow-hidden"
+              style={{
+                background: "rgba(8,12,10,0.92)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(0,255,136,0.12)",
+                boxShadow: "0 0 60px rgba(0,255,136,0.06), 0 0 120px rgba(0,229,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
             >
-              {["0x4F2A", "PKT_OK", "ACK"][i]}
+              <div className="flex items-center gap-2 px-4 py-3 border-b"
+                style={{ borderColor: "rgba(0,255,136,0.1)", background: "rgba(0,0,0,0.3)" }}>
+                <span className="w-2.5 h-2.5 rounded-full bg-red/50" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber/50" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green/50" />
+                <span className="ml-3 font-mono text-[11px] text-dim">~/developer.ts</span>
+                <span className="ml-auto font-mono text-[10px] text-green-dim">● LIVE</span>
+              </div>
+
+              <div className="p-6 font-mono text-sm leading-relaxed">
+                {CODE_LINES.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: scanDone ? 1 : 0, x: scanDone ? 0 : -8 }}
+                    transition={{ delay: 0.4 + i * 0.07, duration: 0.3 }}
+                    className="flex gap-4 min-h-[1.5rem]"
+                  >
+                    <span className="select-none text-dim w-5 text-right shrink-0 text-xs pt-0.5">
+                      {line.code ? i + 1 : ""}
+                    </span>
+                    <span style={{ color: line.color || "transparent" }}>
+                      {line.code
+                        .replace(/(import|from|const|export|default)/g, (m) => `\u200B${m}\u200B`)
+                        .split("\u200B")
+                        .map((part, pi) =>
+                          ["import","from","const","export","default"].includes(part)
+                            ? <span key={pi} style={{ color: "#8b5cf6" }}>{part}</span>
+                            : <span key={pi}>{part}</span>
+                        )}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="px-4 py-2 border-t flex items-center justify-between"
+                style={{ borderColor: "rgba(0,255,136,0.08)", background: "rgba(0,0,0,0.2)" }}>
+                <span className="font-mono text-[10px] text-dim">TypeScript · UTF-8</span>
+                <span className="font-mono text-[10px] text-green-dim flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" />
+                  No errors
+                </span>
+              </div>
             </motion.div>
-          ))}
+
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                className="absolute font-mono text-[9px] text-green-dim pointer-events-none"
+                initial={{ opacity: 0 }}
+                animate={scanDone ? { opacity: [0, 0.5, 0], y: [0, -30 - i * 15], x: [0, (i - 1) * 20] } : {}}
+                transition={{ delay: 1.5 + i * 0.4, duration: 2, repeat: Infinity, repeatDelay: 3 + i }}
+                style={{ right: -20 + i * 10, top: 60 + i * 40 }}
+              >
+                {["0x4F2A", "PKT_OK", "ACK"][i]}
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* ── Mobile profile image — below hero text, above About ── */}
+      {scanDone && (
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="lg:hidden w-full flex justify-center px-6 pb-20 pt-2"
+        >
+          <div style={{ transform: "scale(0.82)", transformOrigin: "top center" }}>
+            <ProfileImage scanDone={scanDone} />
+          </div>
+        </motion.div>
+      )}
+
+      {/* Scroll indicator */}
       <AnimatePresence>
         {scanDone && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hidden lg:flex"
           >
             <span className="font-mono text-[10px] text-dim tracking-[0.3em]">SCROLL</span>
             <motion.div
@@ -336,8 +301,7 @@ export default function Hero() {
               className="flex flex-col items-center gap-0.5"
             >
               <div className="w-px h-6 bg-gradient-to-b from-green to-transparent" />
-              <div className="w-1 h-1 rounded-full bg-green"
-                style={{ boxShadow: "0 0 4px #00ff88" }} />
+              <div className="w-1 h-1 rounded-full bg-green" style={{ boxShadow: "0 0 4px #00ff88" }} />
             </motion.div>
           </motion.div>
         )}
