@@ -29,7 +29,7 @@ export default function Awards() {
         viewport={{ once: true }}
         className="font-sans font-bold text-4xl md:text-5xl text-text mb-12"
       >
-        Awards &amp; <span className="text-amber" style={{ textShadow: "0 0 10px #ffb000, 0 0 20px #ffb000" }}>Certs</span>
+        Awards &amp; <span className="text-green" style={{ textShadow: "0 0 10px #07aa33, 0 0 20px #ffb000" }}>Certs</span>
       </motion.h2>
 
       <div className="grid md:grid-cols-2 gap-5">

@@ -6,9 +6,9 @@ import { contact } from "@/lib/data";
 import { externalLinkProps } from "@/lib/links";
 
 const SOCIAL = [
-  { label: "github",   href: contact.github,   color: "#f0f0f0" },
-  { label: "linkedin", href: contact.linkedin,  color: "#00e5ff" },
-  { label: "resume",   href: contact.resumeUrl, color: "#00ff88" },
+  { label: "github.connect()",   href: contact.github,   color: "#00ff88" },
+  { label: "linkedin.open()", href: contact.linkedin,  color: "#00e5ff" },
+  { label: "resume.view()",   href: contact.resumeUrl, color: "#f0f0f0" },
 ];
 
 export default function Contact() {
@@ -57,7 +57,7 @@ export default function Contact() {
         viewport={{ once: true }}
         className="font-sans font-bold text-4xl md:text-5xl text-text mb-4"
       >
-        Get In <span className="text-green glow-green">Touch</span>
+        Open <span className="text-green glow-green">Secure Channel</span>
       </motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export default function Contact() {
         transition={{ delay: 0.2 }}
         className="text-muted text-sm mb-12 max-w-md"
       >
-        Open to opportunities, collaborations, and interesting problems. Let's build something great.
+       Secure channel active. Open to opportunities, collaborations, and building exceptional software together.
       </motion.p>
 
       <div className="grid lg:grid-cols-2 gap-12">
@@ -121,7 +121,7 @@ export default function Contact() {
             <span className="w-2.5 h-2.5 rounded-full bg-red/50" />
             <span className="w-2.5 h-2.5 rounded-full bg-amber/50" />
             <span className="w-2.5 h-2.5 rounded-full bg-green/50" />
-            <span className="ml-3 font-mono text-[11px] text-dim">send_message.sh</span>
+            <span className="ml-3 font-mono text-[11px] text-dim">sendmessage.sh</span>
           </div>
 
           <div className="p-6">
@@ -133,8 +133,8 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-12 text-center"
                 >
-                  <div className="font-mono text-green glow-green text-lg mb-2">MESSAGE_SENT ✓</div>
-                  <div className="font-mono text-xs text-muted">I&apos;ll get back to you soon.</div>
+                  <div className="font-mono text-green glow-green text-lg mb-2">[SUCCESS] Payload Delivered ✓</div>
+                  <div className="font-mono text-xs text-muted">[QUEUE] Request added successfully.</div>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={handleSubmit} className="space-y-4">
